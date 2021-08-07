@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from users.views import Test
 from django.contrib import admin
 from django.urls import path
 from graphene.types import schema
@@ -21,5 +22,6 @@ from restaurant.query import schema as Schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',GraphQLView.as_view(graphiql=True,schema=Schema))
+    path('',GraphQLView.as_view(graphiql=True,schema=Schema)),
+    path('test/',Test)
 ]

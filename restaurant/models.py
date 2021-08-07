@@ -22,8 +22,6 @@ class RestaurantCategory(models.Model):
         return self.name
 
 
-
-
 class Restaurant(models.Model):
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{10,10}$', message="Phone must be in the format: '+999999999'.Please enter 10 digits mobile number.")
@@ -31,15 +29,16 @@ class Restaurant(models.Model):
     description = models.TextField()
     address = models.TextField()
     phone = models.CharField(validators=[phone_regex], max_length=10)
-    categorys = models.ManyToManyField(RestaurantCategory,related_name="restaurants")
+    categorys = models.ManyToManyField(
+        RestaurantCategory, related_name="restaurants")
     location = models.ForeignKey(
-        Location, on_delete=models.SET_NULL, blank=True, null=True,related_name="restaurants")
+        Location, on_delete=models.SET_NULL, blank=True, null=True, related_name="restaurants")
     status = models.BooleanField(default=False)
     opentime = models.TimeField()
     closstime = models.TimeField()
     seatingCapacity = models.IntegerField(blank=True, null=True)
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, blank=True, null=True ,related_name="restaurant")
+        User, on_delete=models.CASCADE, blank=True, null=True, related_name="restaurant")
     slug = models.SlugField(unique=True, blank=True, null=True)
     logo = models.ImageField(upload_to='rest/', blank=True, null=True)
     # logo and pics for the restaurent is needed here
@@ -60,12 +59,10 @@ class Restaurant(models.Model):
         return self.name
 
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=50)
     shop = models.ForeignKey(
-        Restaurant, on_delete=models.CASCADE, blank=True, null=True,related_name="categories")
+        Restaurant, on_delete=models.CASCADE, blank=True, null=True, related_name="categories")
 
     def __str__(self):
         return self.name
