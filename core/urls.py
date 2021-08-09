@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from graphene.types import schema
 from graphene_django.views import GraphQLView
-from restaurant.query import schema as Schema
+# from restaurant.query import schema as Schema
+from users.mutation import schema as Schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),

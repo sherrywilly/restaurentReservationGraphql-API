@@ -1,3 +1,4 @@
+from  datetime import datetime
 from .models import UserOtp
 from django.contrib.auth import get_user_model
 import random
@@ -10,3 +11,6 @@ def generate_otp(phone):
     print(user.otp)
     return user.otp
 
+
+def genKey(phone):
+    return str(phone) + str(datetime.date(datetime.now())) + "deepsense"

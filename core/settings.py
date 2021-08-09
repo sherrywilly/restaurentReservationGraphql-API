@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'restaurant',
     'users',
     'orders',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+GRAPHQL_JWT = {
+
+    # "JWT_ALLOW_ANY_CLASSES": [
+    #     "graphql_auth.mutations.Register",
+    #     "graphql_auth.mutations.VerifyAccount",
+    #     "graphql_auth.mutations.ResendActivationEmail",
+    #     "graphql_auth.mutations.SendPasswordResetEmail",
+    #     "graphql_auth.mutations.PasswordReset",
+    #     "graphql_auth.mutations.ObtainJSONWebToken",
+    #     "graphql_auth.mutations.VerifyToken",
+    #     "graphql_auth.mutations.RefreshToken",
+    #     "graphql_auth.mutations.RevokeToken",
+    #     "graphql_auth.mutations.VerifySecondaryEmail",
+    # ],
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+}
